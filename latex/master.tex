@@ -1,0 +1,90 @@
+\documentclass[a4paper]{report}
+
+\usepackage{template}
+
+\usepackage{csquotes}
+
+\usepackage{nicefrac}
+
+\usepackage[defernumbers=true, datamodel=archiving]{biblatex}
+\input{archiving.lbx}
+
+% Be more permissive about line breaks in URLs in the bibliography:
+% Credit: https://tex.stackexchange.com/a/134281
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+
+\DeclareBibliographyCategory{formally-peer-reviewed}
+\addtocategory{formally-peer-reviewed}{%
+  Claessen:2000,%
+}
+
+\DeclareBibliographyCategory{phd-theses}
+\addtocategory{phd-theses}{%
+}
+
+\DeclareBibliographyCategory{manuals-and-techreports}
+\addtocategory{manuals-and-techreports}{%
+}
+
+\DeclareBibliographyCategory{media}
+\addtocategory{media}{%
+}
+
+\addbibresource{references.bib}
+
+\usepackage[numbib]{tocbibind}
+
+\header{%
+  course={Technical Report},%
+  assignment={Distributed Hypothesis},%
+  authors={Oleks Shturmov \texttt{<\href{mailto:oleks@oleks.info}{oleks@oleks.info}>}},%
+  affiliation={Department of Informatics\\University of Oslo},%
+  shortAffiliation={IFI/UiO},%
+  date={\today}
+}
+
+\newcommand\tm[0]{\textsuperscript{\scriptsize\texttrademark}}
+\newcommand\longref[1]{\ref{#1} (page \pageref{#1})}
+
+\usepackage{etoolbox}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\input{preface}
+
+\chapter*{References}
+
+\nocite{*}
+
+\printbibliography[%
+  title={Formally Peer-Reviewed},%
+  category=formally-peer-reviewed,%
+  heading=subbibliography%
+]
+
+\printbibliography[%
+  title={PhD Theses},%
+  category=phd-theses,%
+  heading=subbibliography%
+]
+
+\printbibliography[%
+  title={Manuals \& Techreports},%
+  category=manuals-and-techreports,%
+  heading=subbibliography%
+]
+
+\printbibliography[%
+  title={Media},%
+  category=media,%
+  heading=subbibliography%
+]
+
+\pagebreak
+
+\end{document}
